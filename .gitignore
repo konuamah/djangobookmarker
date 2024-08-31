@@ -1,0 +1,56 @@
+# Python bytecode
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Django specific
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+db.sqlite3
+/staticfiles
+/media
+
+# Docker specific
+docker-compose.override.yml
+docker-compose.local.yml
+Dockerfile.dev
+Dockerfile.test
+.docker
+*.dockerfile
+
+# Virtual environment
+venv/
+env/
+.env
+.venv/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Miscellaneous
+*.DS_Store
+*.env
+*.venv
+*.pytest_cache/
+coverage.xml
+nosetests.xml
+*.coverage
+*.hypothesis/
+.tox/
+*.coverage
+*.hypothesis/
+.coverage.*
+.cache
+*.log
+
+# Environment files
+.env
+*.env

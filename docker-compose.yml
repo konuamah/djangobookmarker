@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - .:/code
+    command: gunicorn bookmarks.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - "8080:8000"
+    depends_on:
+      - db
+      - cache
+
+  web_migrate:
+    build: .  # Use the same build context as 'web'
+    env_file:
+      - .env
+    volumes:
+      - .:/code
+    command: python /code/bookmarks/manage.py migrate
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: bookmarksdb_oau2
+      POSTGRES_USER: konuamah
+      POSTGRES_PASSWORD: Q8Yb2OTOb08rpiXkUQ2hus1IqGFrrx7w
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+
+  cache:
+    image: redis:7.2.4
+    restart: always
+    volumes:
+      - ./data/cache:/data
